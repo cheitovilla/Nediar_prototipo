@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : NPC 
 {
-	
+	public NavMeshAgent nav;
 	public Animator animZ;
 	GameObject[] obj;
 	public GameObject go;
@@ -12,7 +13,7 @@ public class Enemy : NPC
 	// Use this for initialization
 	void Start () 
 	{
-
+		nav = GetComponent<NavMeshAgent>();
 		animZ = GetComponent<Animator>(); // animacion zombie
 		Link_Start (); // metodo de iniciar
 		obj = GameObject.FindObjectsOfType (typeof(GameObject)) as GameObject[];
@@ -66,7 +67,7 @@ public class Enemy : NPC
 				{
 					float dist = Vector3.Distance(go.transform.position, transform.position);
 
-					if (dist < 5f)
+					if (dist < 20f)
 					{
 						animZ.SetTrigger("attackZombie");
 						Vector3 direccion = go.transform.position - transform.position;

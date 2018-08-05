@@ -7,6 +7,7 @@ TagManager:
   - Piso
   - Zombie
   - Sword
+  - Books
   layers:
   - Default
   - TransparentFX

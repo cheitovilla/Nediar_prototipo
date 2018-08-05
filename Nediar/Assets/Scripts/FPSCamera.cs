@@ -23,8 +23,8 @@ public class FPSCamera : MonoBehaviour {
 		mouseY -= (Input.GetAxis("Mouse Y") * secibility) * Time.deltaTime;
 		transform.eulerAngles = new Vector3(0, mouseX, 0);
 		cam.transform.eulerAngles = new Vector3(mouseY, mouseX, 0);
-		Cursor.lockState = CursorLockMode.Locked;
-		Cursor.visible = false;
+		//Cursor.lockState = CursorLockMode.Locked;
+		//Cursor.visible = false;
 	
 	}
 }
