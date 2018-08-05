@@ -9,6 +9,7 @@ TagManager:
   - Sword
   - Books
   - LifeUp
+  - point
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Green
   - Minimap
   - Edficios
-  - 
+  - Player
   - 
   - 
   - 

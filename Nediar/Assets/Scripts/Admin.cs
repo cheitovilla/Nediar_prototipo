@@ -14,6 +14,10 @@ public class Admin : MonoBehaviour
 	public float max_img, min_img;
 	GameObject zombicito;
 
+
+
+
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -25,13 +29,13 @@ public class Admin : MonoBehaviour
 		for (int i = 0; i < numNPC; i++) 
 		{
 			zombicito = Instantiate (Resources.Load("Zombie", typeof(GameObject))) as GameObject;
-			zombicito.AddComponent(typeof(Enemy));
+		//	zombicito.AddComponent(typeof(NewNPC));
 			zombicito.tag = "Zombie";
 			zombicito.transform.position = Select_Position ();
 			Npcs [i] = zombicito;
 		}
 
-		Enemy[] enemies = FindObjectsOfType<Enemy> ();
+		NewNPC[] enemies = FindObjectsOfType<NewNPC> ();
 		NumEnemy = enemies.Length;
 		cantEenemy.text = "Enemies: " + NumEnemy.ToString(); 
 
@@ -48,15 +52,15 @@ public class Admin : MonoBehaviour
 	Vector3 Select_Position()
 	{
 		Vector3 pos = new Vector3();
-		pos.x = Random.Range(-50, 50);
+		pos.x = Random.Range(-80, 80);
 		pos.y = 2.7f;
-		pos.z = Random.Range(-50, 50);
+		pos.z = Random.Range(-80, 80);
 		return pos;
 	}
 
 	public void KillEnemy()
 	{
-		NumEnemy--;
+		NumEnemy = NumEnemy - 1;
 		cantEenemy.text = "Enemies: " + NumEnemy.ToString ();
 	}
 
