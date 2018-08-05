@@ -32,7 +32,7 @@ public class Recolector : MonoBehaviour
 			Cursor.visible = true;
 			Cursor.lockState = CursorLockMode.Confined;
 			leyendaText.SetActive (true);
-			other.gameObject.SetActive (false);
+			Destroy(other.gameObject);
 			countBook += 1;
 			SetCountText ();
 		}

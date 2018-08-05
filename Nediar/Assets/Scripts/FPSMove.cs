@@ -10,6 +10,7 @@ public class FPSMove : MonoBehaviour
 	Rigidbody rb;
 	Animator anim;
 	public bool enSuelo = true;
+	GameObject vida;
 
 	// Use this for initialization
 	void Start () 
@@ -96,9 +97,19 @@ public class FPSMove : MonoBehaviour
 				enSuelo = true;	
 			}
 			
-			if (collision.gameObject.tag == "Zombie") 
+			else if (collision.gameObject.tag == "Zombie") 
 			{
 				FindObjectOfType<Admin>().LoseLife();
+			}
+
+			else if (collision.gameObject.tag == "LifeUp") 
+			{
+				FindObjectOfType<Admin> ().GetLife ();
+				Destroy (collision.gameObject);
+				vida = Instantiate(Resources.Load("Life", typeof(GameObject))) as GameObject;
+				vida.transform.position = new Vector3(Random.Range(-25, 25), 5f, Random.Range(-25, 25));
+				vida.tag = "LifeUp";
+
 			}
 
 		}
