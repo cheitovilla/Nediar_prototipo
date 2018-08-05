@@ -38,6 +38,11 @@ public class FPSMove : MonoBehaviour
 					rb.velocity = new Vector3 (rb.velocity.x, jumpForce, rb.velocity.z);
 				}
 			} 
+
+			else if (Input.GetButtonDown ("Fire1")) 
+			{
+				anim.SetTrigger ("attack");	
+			}
 		} 
 		else if (Input.GetKey (KeyCode.S)) 
 		{
@@ -54,6 +59,11 @@ public class FPSMove : MonoBehaviour
 					rb.velocity = new Vector3 (rb.velocity.x, jumpForce, rb.velocity.z);
 				}
 			} 
+
+			else if (Input.GetButtonDown ("Fire1")) 
+			{
+				anim.SetTrigger ("attack");	
+			}
 		}
 
 		else if (Input.GetKey (KeyCode.Space)) 
@@ -85,6 +95,12 @@ public class FPSMove : MonoBehaviour
 			{
 				enSuelo = true;	
 			}
+			
+			if (collision.gameObject.tag == "Zombie") 
+			{
+				FindObjectOfType<Admin>().LoseLife();
+			}
+
 		}
 }
 
