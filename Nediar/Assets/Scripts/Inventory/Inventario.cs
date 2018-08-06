@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//script para activar y desactivar inventario
 public class Inventario : MonoBehaviour 
 {
 	public GameObject inventario;

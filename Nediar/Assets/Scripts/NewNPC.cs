@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 //using UnityEngine.AI;
 
+//un enum para los estados de los enemigos
 public enum Estados
 {
 	patrullar, esperar , atacar
@@ -11,7 +12,7 @@ public enum Estados
 
 public class NewNPC : NavMesh 
 {
-	
+	//Definimos algunas variables
 	public Estados estados;
 	public int i;
 	public float rangoAtack = 20;
@@ -27,18 +28,22 @@ public class NewNPC : NavMesh
 
 	public Animator animZ;
 
+
+	//lamamos navmesh de los enemies
 	private void Awake()
 	{
 		InstancaiNav ();
 	}
 
 	// Use this for initialization
+
+
 	void Start () 
 	{
-		i = Random.Range (0, 4);
-		points = GameObject.FindGameObjectsWithTag("point");
+		i = Random.Range (0, 4); //num aleatorio de donde iran los zombies
+		points = GameObject.FindGameObjectsWithTag("point"); //diferentes posiciones a las que los zombies se dirigiran
 		animZ = GetComponent<Animator>();
-		p = GameObject.Find("Player_Sword").transform;
+		p = GameObject.Find("Player_Sword").transform; // objetivo, el player
 	}
 	
 	// Update is called once per frame
@@ -49,6 +54,7 @@ public class NewNPC : NavMesh
 	}
 
 
+	//maquina de estados para los estados
 	public void MachineStates()
 	{
 		if (atacar)
@@ -67,6 +73,8 @@ public class NewNPC : NavMesh
 				estados = Estados.patrullar;
 			}
 		}
+
+		//switch para seleccionar estados
 		switch (estados)
 		{
 		case Estados.patrullar:
@@ -81,7 +89,7 @@ public class NewNPC : NavMesh
 		}
 	}
 
-
+	//metodo de patrulla, es e metodo donde los zombies caminan a diferentes puntos, son 5 puntos en total
 	public void Patrulla()
 	{
 		int pos = Random.Range(0,4);
@@ -102,6 +110,7 @@ public class NewNPC : NavMesh
 		Moviendo();
 	}
 
+	//si el zombie detenta al player, el ozmbie perseguirá al player
 	public void Atacando()
 	{
 		
@@ -113,13 +122,14 @@ public class NewNPC : NavMesh
 		}
 		else
 		{
+			//sino, que siga su camino
 			animZ.SetTrigger ("walkZombie");
 			target = p;
 			Moviendo();
 		}
 	}
 
-
+	//un estado de esperar para complementar estados, el zombie espera x cantidad de tiempo un rato cuando llega a cierto punto
 	public void Esperando()
 	{
 		animZ.SetTrigger ("idleZombie");
@@ -132,6 +142,7 @@ public class NewNPC : NavMesh
 		}
 	}
 
+	//los zombies lanzan un raycast que permite ver a donde se dirigen, si al player o a los points
 	private void ViendoObjetivo()
 	{
 		if (Physics.Raycast(transform.position, Vector3.Normalize(p.position - transform.position), out viendo, rangoAtack, Objetivo))
@@ -147,10 +158,10 @@ public class NewNPC : NavMesh
 	}
 
 
-
+	//Colisiones del zombie
 	public void OnCollisionEnter(Collision collision)
 	{
-		//Si colisiona con la espada
+		//Si colisiona con la espada este hara animacion de muerte y posteriormente morirá
 		if (collision.gameObject.tag == "Sword") {
 			animZ.SetTrigger ("deathZombie");
 			Debug.Log ("me golpeo la espada");
@@ -158,6 +169,7 @@ public class NewNPC : NavMesh
 			Destroy (gameObject, 1);
 		}
 
+		//si colisiona con el player hará animacion del player.
 		if (collision.gameObject.tag == "Player") 
 		{
 			animZ.SetTrigger ("attackZombie");	

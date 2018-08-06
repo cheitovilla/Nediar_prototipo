@@ -3,6 +3,11 @@ using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+
+//ESTE SCCRIPT LO SAQUÉ DE LOS ASSETS DE UNITY, FUE EL UNICO QUE NO HICE Y NO ES PROPIO MIO
+//sirve para que el sistema de particulas se destruya cuando coje el objeto recolectable
+
+
 namespace UnityStandardAssets.Utility
 {
     public class ParticleSystemDestroyer : MonoBehaviour

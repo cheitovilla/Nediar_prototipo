@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Admin : MonoBehaviour 
 {
+
+	//Se definen algunas variables a utilizar
 	public Text cantEenemy;
 	public Image image;
 	public int numNPC;
@@ -21,15 +23,16 @@ public class Admin : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		//Creacion aleatoria de cantidad de zombies
 		numNPC = Random.Range (15, 25);
 		Npcs = new GameObject[numNPC];
 		life = 400;
 		max_img = life;
 
+		//Se instancian los zombies y sus caracteristicas con una posicion aleatoria
 		for (int i = 0; i < numNPC; i++) 
 		{
 			zombicito = Instantiate (Resources.Load("Zombie", typeof(GameObject))) as GameObject;
-		//	zombicito.AddComponent(typeof(NewNPC));
 			zombicito.tag = "Zombie";
 			zombicito.transform.position = Select_Position ();
 			Npcs [i] = zombicito;
@@ -48,7 +51,7 @@ public class Admin : MonoBehaviour
 
 	}
 
-
+	//Se selecciona una posicion aleatoria de donde van a parecer los zombies
 	Vector3 Select_Position()
 	{
 		Vector3 pos = new Vector3();
@@ -58,12 +61,15 @@ public class Admin : MonoBehaviour
 		return pos;
 	}
 
+	//funcion de matar enemigos y descontar 1 
 	public void KillEnemy()
 	{
 		NumEnemy = NumEnemy - 1;
 		cantEenemy.text = "Enemies: " + NumEnemy.ToString ();
 	}
 
+
+	//Funcion de recuperar vida con el objeto recuperable lifeup
 	public void GetLife()
 	{
 		if (life == 400)
@@ -74,6 +80,8 @@ public class Admin : MonoBehaviour
 		image.fillAmount = (life) / max_img; 
 	}
 
+
+	//funcion de perder vida cuando lo ataca un zombie
 	public void LoseLife()
 	{
 		life -= 30;

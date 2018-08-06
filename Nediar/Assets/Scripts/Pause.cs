@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+//pues para pausar el juego
 public class Pause : MonoBehaviour {
 
-	public GameObject panel_pause;
+
+	public GameObject panel_pause;// un panel de menu pausa
 
 
 	// Use this for initialization
@@ -16,13 +19,14 @@ public class Pause : MonoBehaviour {
 	}
 
 	// Update is called once per frame
+	//activa pausa
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.Escape)) {
 			Pausa ();
 		}
 	}
 
-
+	//funcion pausa
 	public void Pausa(){
 		panel_pause.SetActive (true);
 
@@ -32,6 +36,7 @@ public class Pause : MonoBehaviour {
 
 	}
 
+	//funcion continuar
 	public void Reanudar(){
 
 		panel_pause.SetActive (false);
@@ -41,6 +46,7 @@ public class Pause : MonoBehaviour {
 
 	}
 
+	//volver al menu
 	public void VolverInicio(){
 		SceneManager.LoadScene ("Inicio");
 	}

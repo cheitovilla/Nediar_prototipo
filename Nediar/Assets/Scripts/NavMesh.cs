@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class NavMesh : MonoBehaviour 
 {
 
+	//NavMesh AI
 	public NavMeshAgent navMesh;
 	public Transform target;
 

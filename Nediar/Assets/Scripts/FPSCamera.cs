@@ -16,6 +16,7 @@ public class FPSCamera : MonoBehaviour {
 		MovMause();
 	}
 
+	//Script para mover la camara 
 	void MovMause()
 	{
 		Camera cam = Camera.main;

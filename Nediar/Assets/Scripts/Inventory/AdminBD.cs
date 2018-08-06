@@ -35,7 +35,7 @@ public class AdminBD : MonoBehaviour
 
 
 
-
+	//Agrega algo al inventario
 	public void AddSometoInventory(int id, int cant)
 	{
 		for (int i = 0; i < inventario.Count; i++) 
@@ -51,7 +51,7 @@ public class AdminBD : MonoBehaviour
 		ActInventario ();
 	}
 
-
+	//Elimina algo del inventario pero esta funcion no la implementé.
 	public void DeleteSomeToinventory(int id, int cant)
 	{
 		for (int i = 0; i < inventario.Count; i++) 
@@ -68,6 +68,7 @@ public class AdminBD : MonoBehaviour
 		Debug.Log ("WTF?!");
 	}
 
+	//Cambiar posiciones de objetos en inventario
 	public void ChangePosition(int i1, int i2)
 	{
 		ObjInventarioId i = inventario [i1];
@@ -83,6 +84,8 @@ public class AdminBD : MonoBehaviour
 	//cant de obj que si utilizamos o no
 	List<InventarioInterface> pool = new List<InventarioInterface>();
 
+
+	//actualizar inventario
 	public void ActInventario()
 	{	
 		print ("actualizado");
@@ -133,22 +136,25 @@ public class AdminBD : MonoBehaviour
 
 	}
 
-
+	//Cuando se le da click aparece info del libro verde
 	public void GreenBook()
 	{
 		print ("el libro verde");
 	}
 
+	//cuando se le da click info del libro rojo
 	public void RedBook()
 	{
 		print ("el libro rojo");
 	}
 
+	//cuando se le da clic info del libro marron
 	public void BrownBook()
 	{
 		print ("el libro marron");
 	}
 
+	//cuando se le da clic info del libro dorado
 	public void GoldBook()
 	{
 		print ("el libro dorado");

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
+//script para ver como se ve los objetos cuando salen del inventario
 public class InventarioObjPlaceHolder : MonoBehaviour
 {
 

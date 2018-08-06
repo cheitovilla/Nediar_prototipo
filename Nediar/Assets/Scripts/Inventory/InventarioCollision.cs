@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//las colisiones con los objetos recolectables
 public class InventarioCollision : MonoBehaviour 
 {
 	public GameObject leyendaText;
@@ -17,6 +19,8 @@ public class InventarioCollision : MonoBehaviour
 	// Update is called once per frame
 	void OnTriggerEnter ( Collider collider) 
 	{
+		//si colisiona con el objeto recogible, este hace lo siguiente:
+		//agrega obj al inventario, se instancia un sist. de particulas, se activa leyenda, se destruye el obj.
 		if (collider.GetComponent<ObjRecolectable>() != null) 
 		{
 			Instantiate(Resources.Load("Particle"), collider.transform.position, Quaternion.Euler(-90, 0, 0));
@@ -29,6 +33,7 @@ public class InventarioCollision : MonoBehaviour
 		}
 	}
 
+	//funcion cerrar leyenda
 	public void CloseLeyenda(){
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
