@@ -15,6 +15,8 @@ public class Admin : MonoBehaviour
 	public int life;
 	public float max_img, min_img;
 	GameObject zombicito;
+    public GameObject win;
+    public GameObject lose;
 
 
 
@@ -48,8 +50,24 @@ public class Admin : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+        if (NumEnemy <= 0 )
+        {
+            win.gameObject.SetActive(true);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+            Time.timeScale = 0;
+        }
+        //lo que sucede cuando el jugador pierde
+        if (life <= 0)
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            lose.gameObject.SetActive(true);
+            Cursor.visible = true;
+            Camera.main.transform.SetParent(null);
+            Time.timeScale = 0;
 
-	}
+        }
+    }
 
 	//Se selecciona una posicion aleatoria de donde van a parecer los zombies
 	Vector3 Select_Position()

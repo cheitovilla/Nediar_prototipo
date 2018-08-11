@@ -6,6 +6,7 @@ public class FPSMove : MonoBehaviour
 {
 	//Se definen algunas variables a utilizar
 	public float speed;
+    public float speedx2;
 	public float jumpForce;
 	Rigidbody rb;
 	Animator anim;
@@ -28,24 +29,10 @@ public class FPSMove : MonoBehaviour
 		{
 			anim.SetTrigger ("walkup");
 			transform.position += transform.forward * speed * Time.deltaTime;
-
-			//Saltar mientras camina
-			if (Input.GetKey (KeyCode.Space)) 
-			{
-				if (enSuelo) 
-				{
-					enSuelo = false;
-					anim.SetTrigger ("jump");
-					transform.position += transform.up * speed * Time.deltaTime;	
-					rb.velocity = new Vector3 (rb.velocity.x, jumpForce, rb.velocity.z);
-				}
-			} 
-
-			//ataca mientras camina hacia adelante
-			else if (Input.GetButtonDown ("Fire1")) 
-			{
-				anim.SetTrigger ("attack");	
-			}
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                transform.position += transform.forward * speedx2 * Time.deltaTime;
+            }
 		} 
 
 		//Caminar hacia atras
@@ -53,25 +40,14 @@ public class FPSMove : MonoBehaviour
 		{
 			anim.SetTrigger ("walkback");
 			transform.position -= transform.forward * speed * Time.deltaTime;
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                transform.position -= transform.forward * speedx2 * Time.deltaTime;
+            }
 
-			//slta mientras camina hacia atras
-			if (Input.GetKey (KeyCode.Space)) 
-			{
-				if (enSuelo) 
-				{
-					enSuelo = false;
-					anim.SetTrigger ("jump");
-					transform.position += transform.up * speed * Time.deltaTime;	
-					rb.velocity = new Vector3 (rb.velocity.x, jumpForce, rb.velocity.z);
-				}
-			} 
+        }
 
-			//ataca mientras camina hacia atras
-			else if (Input.GetButtonDown ("Fire1")) 
-			{
-				anim.SetTrigger ("attack");	
-			}
-		}
+
 
 		//salta mientras camina hacia atras
 		else if (Input.GetKey (KeyCode.Space)) 
@@ -96,7 +72,21 @@ public class FPSMove : MonoBehaviour
 		{
 			anim.SetTrigger ("idle");	
 		}
+
+       
 	}
+
+
+
+
+
+
+
+
+
+
+
+
 
 	//Colisiones
 		private void OnCollisionEnter (Collision collision)
