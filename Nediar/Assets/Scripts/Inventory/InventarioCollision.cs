@@ -7,6 +7,7 @@ using UnityEngine;
 public class InventarioCollision : MonoBehaviour 
 {
 	public GameObject leyendaText;
+	public int cant_Book = 0;
 	AdminBD m;
 	// Use this for initialization
 	void Start () 
@@ -30,7 +31,14 @@ public class InventarioCollision : MonoBehaviour
 			ObjRecolectable i = collider.GetComponent<ObjRecolectable> ();
 			m.AddSometoInventory (i.id, i.cant);
 			Destroy (collider.gameObject);		
+			Recogiendo ();
 		}
+	}
+
+
+	public void Recogiendo()
+	{
+		cant_Book++;
 	}
 
 	//funcion cerrar leyenda
