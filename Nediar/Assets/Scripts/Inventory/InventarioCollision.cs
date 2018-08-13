@@ -36,6 +36,13 @@ public class InventarioCollision : MonoBehaviour
 	}
 
 
+
+	public void Update()
+	{
+		if (cant_Book >= 4) {
+			Debug.Log ("You Win");
+		}
+	}
 	public void Recogiendo()
 	{
 		cant_Book++;
