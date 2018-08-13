@@ -7,6 +7,7 @@ using UnityEngine;
 public class InventarioCollision : MonoBehaviour 
 {
 	public GameObject leyendaText;
+	public int cant_Book = 0;
 	AdminBD m;
 	// Use this for initialization
 	void Start () 
@@ -17,21 +18,24 @@ public class InventarioCollision : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void OnTriggerEnter ( Collider collider) 
+	void OnTriggerEnter ( Collider collider)
 	{
 		//si colisiona con el objeto recogible, este hace lo siguiente:
 		//agrega obj al inventario, se instancia un sist. de particulas, se activa leyenda, se destruye el obj.
-		if (collider.GetComponent<ObjRecolectable>() != null) 
-		{
-			Instantiate(Resources.Load("Particle"), collider.transform.position, Quaternion.Euler(-90, 0, 0));
+		if (collider.GetComponent<ObjRecolectable> () != null) {
+			cant_Book = cant_Book + 1;
+			Instantiate (Resources.Load ("Particle"), collider.transform.position, Quaternion.Euler (-90, 0, 0));
 			Cursor.lockState = CursorLockMode.Confined;
 			Cursor.visible = true;
 			leyendaText.SetActive (true);
 			ObjRecolectable i = collider.GetComponent<ObjRecolectable> ();
 			m.AddSometoInventory (i.id, i.cant);
 			Destroy (collider.gameObject);		
+
+			Debug.Log ("llevo: " + cant_Book + " Libros.");
 		}
 	}
+
 
 	//funcion cerrar leyenda
 	public void CloseLeyenda(){
