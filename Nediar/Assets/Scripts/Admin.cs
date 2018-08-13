@@ -51,7 +51,7 @@ public class Admin : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if (NumEnemy <= 0)
+		if (NumEnemy == 0 && FindObjectOfType<InventarioCollision>().cant_Book>= 4)
         {
             win.gameObject.SetActive(true);
             Cursor.visible = true;

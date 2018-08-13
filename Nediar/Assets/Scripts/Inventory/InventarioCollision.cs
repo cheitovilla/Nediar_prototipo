@@ -18,35 +18,24 @@ public class InventarioCollision : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void OnTriggerEnter ( Collider collider) 
+	void OnTriggerEnter ( Collider collider)
 	{
 		//si colisiona con el objeto recogible, este hace lo siguiente:
 		//agrega obj al inventario, se instancia un sist. de particulas, se activa leyenda, se destruye el obj.
-		if (collider.GetComponent<ObjRecolectable>() != null) 
-		{
-			Instantiate(Resources.Load("Particle"), collider.transform.position, Quaternion.Euler(-90, 0, 0));
+		if (collider.GetComponent<ObjRecolectable> () != null) {
+			cant_Book = cant_Book + 1;
+			Instantiate (Resources.Load ("Particle"), collider.transform.position, Quaternion.Euler (-90, 0, 0));
 			Cursor.lockState = CursorLockMode.Confined;
 			Cursor.visible = true;
 			leyendaText.SetActive (true);
 			ObjRecolectable i = collider.GetComponent<ObjRecolectable> ();
 			m.AddSometoInventory (i.id, i.cant);
 			Destroy (collider.gameObject);		
-			Recogiendo ();
+
+			Debug.Log ("llevo: " + cant_Book + " Libros.");
 		}
 	}
 
-
-
-	public void Update()
-	{
-		if (cant_Book >= 4) {
-			Debug.Log ("You Win");
-		}
-	}
-	public void Recogiendo()
-	{
-		cant_Book++;
-	}
 
 	//funcion cerrar leyenda
 	public void CloseLeyenda(){
